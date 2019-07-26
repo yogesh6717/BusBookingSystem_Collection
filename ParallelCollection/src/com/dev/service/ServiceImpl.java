@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.dev.beans.Admin;
+import com.dev.beans.Available;
 import com.dev.beans.Bus;
 import com.dev.beans.Suggestion;
 import com.dev.beans.Ticket;
@@ -39,7 +41,12 @@ public class ServiceImpl implements Service {
 	public User loginUser(int user_id, String password) {
 		return db.loginUser(user_id, password);
 	}
-
+	
+	@Override
+	public Admin adminLogin(int admin_id, String password) {
+		// TODO Auto-generated method stub
+		return db.adminLogin(admin_id, password);
+	}
 	@Override
 	public User searchUser(int user_id) {
 		return db.searchUser(user_id);
@@ -65,10 +72,6 @@ public class ServiceImpl implements Service {
 		return db.deletebus(bus_id);
 	}
 
-	@Override
-	public Boolean adminLogin(int admin_id, String password) {
-		return db.adminLogin(admin_id, password);
-	}
 
 	@Override
 	public Ticket bookTicket(Ticket ticket) {
@@ -86,13 +89,18 @@ public class ServiceImpl implements Service {
 	}
 
 	@Override
-	public List<Bus> checkAvailability(String source,String destination,  Date date) {
+	public List<Available> checkAvailability(String source,String destination,  Date date) {
 		return db.checkAvailability(source, destination, date);
 	}
 
 	@Override
 	public Integer checkAvailability( int bus_id, Date date){
 		return db.checkAvailability(bus_id, date);
+	}
+
+	@Override
+	public Boolean setAvailability(Available available) {
+		return db.setBusAvailability(available);
 	}
 
 	@Override
@@ -140,7 +148,5 @@ public class ServiceImpl implements Service {
 		}
 
 	}
-
-
 
 }

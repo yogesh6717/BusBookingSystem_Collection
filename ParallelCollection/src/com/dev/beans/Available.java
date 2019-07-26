@@ -1,9 +1,10 @@
 package com.dev.beans;
 
+import java.sql.Date;
 
 public class Available {
 	private int availableId;
-	private String availableDate;
+	private Date availableDate;
 	private int availableSeats;
 	private int busId;
 	public int getAvailableId() {
@@ -12,10 +13,10 @@ public class Available {
 	public void setAvailableId(int availableId) {
 		this.availableId = availableId;
 	}
-	public String getAvailableDate() {
+	public Date getAvailableDate() {
 		return availableDate;
 	}
-	public void setAvailableDate(String availableDate) {
+	public void setAvailableDate(Date availableDate) {
 		this.availableDate = availableDate;
 	}
 	public int getAvailableSeats() {

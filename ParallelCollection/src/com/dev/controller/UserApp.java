@@ -118,10 +118,29 @@ public class UserApp {
 		user.setUserPassword(password);
 		System.out.println("Enter New Username");
 		user.setUserName(sc.next());
-		System.out.println("Enter New Email");
-		user.setEmail(sc.next());
-		System.out.println("Enter New Contact");
-		user.setContact(sc.nextLong());
+		boolean checkEmail = true;
+		while(checkEmail) {
+		System.out.println("Enter Email:");
+		String temp=service.regexemail(sc.next());
+		if(temp !=null) {
+			user.setEmail(temp);
+			checkEmail = false;
+		}else {
+			System.out.println("Wrong Email Format!! e.g(example@email.com)");
+		}
+	}
+
+		boolean checkContact = true;
+		while(checkContact) {
+		System.out.println("Enter Contact No.:");
+		Long temp=service.regexcontact(sc.next());
+		if(temp !=null) {
+			user.setContact(temp);
+			checkContact = false;
+		}else {
+			System.out.println("Contact should be of 10 digits!!");
+		}
+	}
 
 		boolean b = service.updateUser(user);
 		if(b) {
@@ -203,11 +222,11 @@ public class UserApp {
 		System.out.println("Enter Date (YYYY-MM-DD)");
 		String tempDate=sc.next();
 		Date date=Date.valueOf(tempDate);
-		available.setAvailableDate(date);
-		List<Bus> list = 
+		//available.setAvailableDate(date);
+		List<Available> list = 
 				service.checkAvailability(source,destination,date);
 
-		for(Bus bs:list)
+		for(Available bs:list)
 		{	
 			System.out.println(bs);
 			int avail = service.checkAvailability(bs.getBusId(), date);
@@ -226,10 +245,10 @@ public class UserApp {
 		String tempDate=sc.next();
 		Date date=Date.valueOf(tempDate);
 		ticket.setJourneyDate(date);
-		List<Bus> list = 
+		List<Available> list = 
 				service.checkAvailability(checksource,checkdestination,date);
 
-		for(Bus bs:list)
+		for(Available bs:list)
 		{	
 
 			System.out.println(bs);

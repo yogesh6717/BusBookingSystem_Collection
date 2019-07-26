@@ -2,6 +2,8 @@ package com.dev.dao;
 
 import java.util.List;
 
+import com.dev.beans.Admin;
+import com.dev.beans.Available;
 import com.dev.beans.Bus;
 import com.dev.beans.Suggestion;
 import com.dev.beans.Ticket;
@@ -23,17 +25,17 @@ public interface BusBookingDAO {
 		public Boolean deletebus(int bus_id);
 		
 		//admin
-		public Boolean adminLogin(int admin_id, String password);
+		public Admin adminLogin(int admin_id, String password);
 		
 		
 		//ticket booking
 		public Ticket bookTicket(Ticket ticket);
 		public Boolean cancelTicket(int booking_id);
 		public Ticket getTicket(int booking_id);
-		public List <Bus>checkAvailability(String source,String destination,java.sql.Date date);
+		public List <Available>checkAvailability(String source,String destination,java.sql.Date date);
 		public Integer checkAvailability( int bus_id, java.sql.Date date);
 		
-		
+		public Boolean setBusAvailability(Available available);
 		public Boolean giveFeedback(int userId, String feedback);
 		public List<Suggestion> getAllSuggestions(Suggestion sugg); 
 		
